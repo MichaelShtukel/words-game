@@ -1,0 +1,40 @@
+.letter-card {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  border-radius: 12px;
+  background-color: #F2F2F2;
+
+  &__letter {
+    display: none;
+    font-size: 42px;
+    line-height: 84px;
+    color: #4D4D4D;
+
+    &--show {
+      display: flex;
+    }
+  }
+
+  &--success {
+    background-color: #65BD65;
+
+    .letter-card__letter {
+      display: flex;
+      color: white;
+    }
+  }
+
+  &--sm {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+
+    &__letter {
+      font-size: 30px;
+      line-height: 60px;
+    }
+  }
+}
