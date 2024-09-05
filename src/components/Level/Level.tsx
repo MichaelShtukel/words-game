@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import './Level.scss';
 import useGetLevel from '../../api/queries/useGetLevel';
 import Header from '../Header/Header';
@@ -7,9 +7,8 @@ import WordList from '../WordList/WordList';
 import WordInput from '../WordInput/WordInput';
 import { getRandomShuffledLetters } from '../../core/getRandomShuffledLetters';
 import WordLine from '../WordLine/WordLine';
-import WordStatus from '../../types/wordStatus';
-import isDeepEqual from '../../core/isDeepEqual';
 import Confetti from '../Confetti/Confetti';
+import useSetProgress from '../../api/queries/useSetProgress';
 
 interface Props {
   levelNumber?: number;
@@ -21,8 +20,8 @@ const Level: FC<Props> = ({levelNumber, solvedWords = []}) => {
   const [selectedWord, setSelectedWord] = useState<string>('');
   const [wordInputLetters, setWordInputLetters] = useState<string[]>([]);
   const [isAnimationMode, setIsAnimationMode] = useState<boolean>(false);
-  const localSolvedWords = useRef<string[]>(solvedWords); // временное решение
-  const wordStatuses = useRef<WordStatus[]>([]);
+
+  const {mutate: setProgress} = useSetProgress()
 
   useEffect(() => {
     if (wordInputLetters.length === 0 && level && level.words.length !== 0) {
@@ -31,31 +30,14 @@ const Level: FC<Props> = ({levelNumber, solvedWords = []}) => {
   }, [level, wordInputLetters])
 
   useEffect(() => {
-    if (level && level.words.length !== 0) {
-      const newWordStatuses = level.words
-        .sort((a, b) => a.length - b.length)
-        .map(word => ({
-          word,
-          isSolved: word === selectedWord || localSolvedWords.current.indexOf(word) !== -1,// solvedWords.indexOf(word) !== -1,
-        }))
-      if (wordStatuses.current.length === 0) {
-        wordStatuses.current = newWordStatuses;
-      }
-      const isEqual = isDeepEqual(wordStatuses.current, newWordStatuses);
-      if (!isEqual) {
-        wordStatuses.current = newWordStatuses;
-        // здесь будет сохранение статуса
-        localSolvedWords.current = [
-          ...localSolvedWords.current,
-          selectedWord,
-        ];
-        setIsAnimationMode(true)
-        setTimeout(() => {
-          setIsAnimationMode(false)
-        }, 2000)
-      }
+    if (!isAnimationMode && selectedWord && level && level.words.indexOf(selectedWord) !== -1 && solvedWords.indexOf(selectedWord) === -1) {
+      setProgress(selectedWord)
+      setIsAnimationMode(true)
+      setTimeout(() => {
+        setIsAnimationMode(false)
+      }, 2000)
     }
-  }, [level, selectedWord]); // , solvedWords]);
+  }, [isAnimationMode, level, selectedWord, setProgress, solvedWords]);
 
   if (!level) {
     return <span>Sorry, something went wrong...</span>
@@ -65,10 +47,17 @@ const Level: FC<Props> = ({levelNumber, solvedWords = []}) => {
     return <span>Loading...</span>
   }
 
+  const wordStatuses = level.words
+    .sort((a, b) => a.length - b.length)
+    .map(word => ({
+      word,
+      isSolved: solvedWords.indexOf(word) !== -1,
+    }))
+
   return (
     <div className="level">
       <Header>{getLevelTitleByNumber(levelNumber)}</Header>
-      <WordList wordStatuses={wordStatuses.current} />
+      <WordList wordStatuses={wordStatuses} />
       {
         isAnimationMode ? (
           <Confetti />
