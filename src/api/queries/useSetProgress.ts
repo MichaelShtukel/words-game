@@ -17,7 +17,7 @@ export default function useSetProgress() {
           word,
         ]
         if (level && arraysEqual(solvedWords, level.words)) {
-          if (progress.levelNumber === 3) {
+          if (progress.levelNumber === 7) {
             return setProgress({
               levelNumber: 1,
               solvedWords: [],

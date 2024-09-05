@@ -31,6 +31,7 @@ const Level: FC<Props> = ({levelNumber, solvedWords = []}) => {
 
   useEffect(() => {
     if (!isAnimationMode && selectedWord && level && level.words.indexOf(selectedWord) !== -1 && solvedWords.indexOf(selectedWord) === -1) {
+      setSelectedWord('')
       setProgress(selectedWord)
       setIsAnimationMode(true)
       setTimeout(() => {

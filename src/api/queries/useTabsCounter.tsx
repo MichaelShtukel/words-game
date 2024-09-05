@@ -26,7 +26,6 @@ export default function useTabsCounter() {
 
   useEffect(() => {
     const tabsCounter = localStorage.getItem('tabsCounter')
-    console.log('tabsCounter', tabsCounter)
     if (!tabsCounter) {
       localStorage.setItem('tabsCounter', '1')
     } else {
