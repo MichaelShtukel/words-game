@@ -5,7 +5,7 @@ import Header from '../Header/Header';
 import getLevelTitleByNumber from '../../core/getLevelTitleByNumber';
 import WordList from '../WordList/WordList';
 import WordInput from '../WordInput/WordInput';
-import { getRandomShuffledLetters } from '../../core/getRandomShuffledLetters';
+import getMinimalLetterSet from '../../core/getMinimalLetterSet';
 import WordLine from '../WordLine/WordLine';
 import Confetti from '../Confetti/Confetti';
 import useSetProgress from '../../api/queries/useSetProgress';
@@ -25,13 +25,14 @@ const Level: FC<Props> = ({levelNumber, solvedWords = []}) => {
 
   useEffect(() => {
     if (wordInputLetters.length === 0 && level && level.words.length !== 0) {
-      setWordInputLetters(getRandomShuffledLetters(level.words))
+      setWordInputLetters(getMinimalLetterSet(level.words))
     }
   }, [level, wordInputLetters])
 
   useEffect(() => {
     if (!isAnimationMode && selectedWord && level && level.words.indexOf(selectedWord) !== -1 && solvedWords.indexOf(selectedWord) === -1) {
       setSelectedWord('')
+      setWordInputLetters([])
       setProgress(selectedWord)
       setIsAnimationMode(true)
       setTimeout(() => {

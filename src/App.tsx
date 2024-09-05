@@ -2,6 +2,7 @@ import './App.scss';
 import Level from './components/Level/Level';
 import useGetProgress from './api/queries/useGetProgress';
 import useTabsCounter from './api/queries/useTabsCounter';
+import VictoryScreen from './components/VictoryScreen/VictoryScreen';
 
 function App() {
   const {data: progress, isLoading} = useGetProgress()
@@ -11,6 +12,14 @@ function App() {
 
   if (isLoading) {
     return <span>Loading...</span>
+  }
+
+  if (progress && progress.showVictoryScreen) {
+    return (
+      <div className="app">
+        <VictoryScreen levelNumber={progress.levelNumber} />
+      </div>
+    );
   }
 
   return (

@@ -65,7 +65,8 @@ const WordInput: FC<PropsWithChildren<Props>> = ({letters, setSelectedWord, chil
   };
 
   const handleLetterMouseMove = (id: string, letter: string, event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (isDrawing && selectedLetters.length > 0 && selectedLetters[selectedLetters.length - 1].id !== id) {
+    const isNotSelectedBefore = !selectedLetters.find(letter => letter.id === id);
+    if (isDrawing && selectedLetters.length > 0 && isNotSelectedBefore) {
       const {left, top} = svgRef.current!.getBoundingClientRect();
       const {x, y} = getCenterCoordinates(event, left, top);
       setSelectedLetters([

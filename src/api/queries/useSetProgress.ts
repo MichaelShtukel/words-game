@@ -12,6 +12,13 @@ export default function useSetProgress() {
   return useMutation<Progress, never, string>({
     mutationFn: (word: string) => {
       if (progress) {
+        if (!word) {
+          return setProgress({
+            levelNumber: progress.levelNumber,
+            solvedWords: [],
+            showVictoryScreen: false,
+          })
+        }
         const solvedWords = [
           ...progress.solvedWords,
           word,
@@ -21,22 +28,26 @@ export default function useSetProgress() {
             return setProgress({
               levelNumber: 1,
               solvedWords: [],
+              showVictoryScreen: true,
             })
           }
           return setProgress({
             levelNumber: progress.levelNumber + 1,
             solvedWords: [],
+            showVictoryScreen: true,
           })
         }
 
         return setProgress({
           levelNumber: progress.levelNumber,
           solvedWords,
+          showVictoryScreen: false,
         })
       }
       return setProgress({
         levelNumber: 1,
         solvedWords: [word],
+        showVictoryScreen: false,
       })
     },
     onSuccess: () => {
