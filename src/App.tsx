@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className="app">
-      <Level levelNumber={progress?.levelNumber} />
+      <Level levelNumber={progress?.levelNumber} solvedWords={progress?.solvedWords} />
     </div>
   );
 }

@@ -1,16 +1,24 @@
 import { FC } from 'react';
 import './WordList.scss';
 import WordLine from '../WordLine/WordLine';
+import WordStatus from '../../types/wordStatus';
 
 interface Props {
-  words: string[];
+  wordStatuses: WordStatus[];
 }
 
-const WordList: FC<Props> = ({words}) => {
+const WordList: FC<Props> = ({wordStatuses}) => {
   return (
     <div className="word-list">
       {
-        words.map((word, index) => <WordLine key={index} word={word} />)
+        wordStatuses.map(({word, isSolved}, index) => (
+          <WordLine
+            key={index}
+            word={word}
+            isShow={isSolved}
+            isSuccess={isSolved}
+          />
+        ))
       }
     </div>
   );

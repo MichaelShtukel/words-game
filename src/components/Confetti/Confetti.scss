@@ -1,0 +1,254 @@
+.confetti-container {
+  position: relative;
+  width: 100%;
+  height: 366px;
+}
+
+.confetti {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+}
+
+.confetti-piece {
+  position: absolute;
+  opacity: 0;
+  transform-origin: center;
+  animation: explode 2s ease forwards;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Формы конфетти */
+.square {
+  width: 15px;
+  height: 15px;
+  background: linear-gradient(45deg, #ff4081, #ffc107);
+}
+
+.circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #4caf50, #2196f3);
+}
+
+.rectangle {
+  width: 10px;
+  height: 20px;
+  background: linear-gradient(45deg, #9c27b0, #00bcd4);
+}
+
+/* Анимация */
+@keyframes explode {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) scale(0.5) rotate(720deg);
+  }
+}
+
+.confetti-piece:nth-child(1) {
+  --x: calc(150px * cos(0deg));
+  --y: calc(150px * sin(0deg));
+}
+.confetti-piece:nth-child(2) {
+  --x: calc(150px * cos(7.2deg));
+  --y: calc(150px * sin(7.2deg));
+}
+.confetti-piece:nth-child(3) {
+  --x: calc(150px * cos(14.4deg));
+  --y: calc(150px * sin(14.4deg));
+}
+.confetti-piece:nth-child(4) {
+  --x: calc(150px * cos(21.6deg));
+  --y: calc(150px * sin(21.6deg));
+}
+.confetti-piece:nth-child(5) {
+  --x: calc(150px * cos(28.8deg));
+  --y: calc(150px * sin(28.8deg));
+}
+.confetti-piece:nth-child(6) {
+  --x: calc(150px * cos(36deg));
+  --y: calc(150px * sin(36deg));
+}
+.confetti-piece:nth-child(7) {
+  --x: calc(150px * cos(43.2deg));
+  --y: calc(150px * sin(43.2deg));
+}
+.confetti-piece:nth-child(8) {
+  --x: calc(150px * cos(50.4deg));
+  --y: calc(150px * sin(50.4deg));
+}
+.confetti-piece:nth-child(9) {
+  --x: calc(150px * cos(57.6deg));
+  --y: calc(150px * sin(57.6deg));
+}
+.confetti-piece:nth-child(10) {
+  --x: calc(150px * cos(64.8deg));
+  --y: calc(150px * sin(64.8deg));
+}
+.confetti-piece:nth-child(11) {
+  --x: calc(150px * cos(72deg));
+  --y: calc(150px * sin(72deg));
+}
+.confetti-piece:nth-child(12) {
+  --x: calc(150px * cos(79.2deg));
+  --y: calc(150px * sin(79.2deg));
+}
+.confetti-piece:nth-child(13) {
+  --x: calc(150px * cos(86.4deg));
+  --y: calc(150px * sin(86.4deg));
+}
+.confetti-piece:nth-child(14) {
+  --x: calc(150px * cos(93.6deg));
+  --y: calc(150px * sin(93.6deg));
+}
+.confetti-piece:nth-child(15) {
+  --x: calc(150px * cos(100.8deg));
+  --y: calc(150px * sin(100.8deg));
+}
+.confetti-piece:nth-child(16) {
+  --x: calc(150px * cos(108deg));
+  --y: calc(150px * sin(108deg));
+}
+.confetti-piece:nth-child(17) {
+  --x: calc(150px * cos(115.2deg));
+  --y: calc(150px * sin(115.2deg));
+}
+.confetti-piece:nth-child(18) {
+  --x: calc(150px * cos(122.4deg));
+  --y: calc(150px * sin(122.4deg));
+}
+.confetti-piece:nth-child(19) {
+  --x: calc(150px * cos(129.6deg));
+  --y: calc(150px * sin(129.6deg));
+}
+.confetti-piece:nth-child(20) {
+  --x: calc(150px * cos(136.8deg));
+  --y: calc(150px * sin(136.8deg));
+}
+.confetti-piece:nth-child(21) {
+  --x: calc(150px * cos(144deg));
+  --y: calc(150px * sin(144deg));
+}
+.confetti-piece:nth-child(22) {
+  --x: calc(150px * cos(151.2deg));
+  --y: calc(150px * sin(151.2deg));
+}
+.confetti-piece:nth-child(23) {
+  --x: calc(150px * cos(158.4deg));
+  --y: calc(150px * sin(158.4deg));
+}
+.confetti-piece:nth-child(24) {
+  --x: calc(150px * cos(165.6deg));
+  --y: calc(150px * sin(165.6deg));
+}
+.confetti-piece:nth-child(25) {
+  --x: calc(150px * cos(172.8deg));
+  --y: calc(150px * sin(172.8deg));
+}
+.confetti-piece:nth-child(26) {
+  --x: calc(150px * cos(180deg));
+  --y: calc(150px * sin(180deg));
+}
+.confetti-piece:nth-child(27) {
+  --x: calc(150px * cos(187.2deg));
+  --y: calc(150px * sin(187.2deg));
+}
+.confetti-piece:nth-child(28) {
+  --x: calc(150px * cos(194.4deg));
+  --y: calc(150px * sin(194.4deg));
+}
+.confetti-piece:nth-child(29) {
+  --x: calc(150px * cos(201.6deg));
+  --y: calc(150px * sin(201.6deg));
+}
+.confetti-piece:nth-child(30) {
+  --x: calc(150px * cos(208.8deg));
+  --y: calc(150px * sin(208.8deg));
+}
+.confetti-piece:nth-child(31) {
+  --x: calc(150px * cos(216deg));
+  --y: calc(150px * sin(216deg));
+}
+.confetti-piece:nth-child(32) {
+  --x: calc(150px * cos(223.2deg));
+  --y: calc(150px * sin(223.2deg));
+}
+.confetti-piece:nth-child(33) {
+  --x: calc(150px * cos(230.4deg));
+  --y: calc(150px * sin(230.4deg));
+}
+.confetti-piece:nth-child(34) {
+  --x: calc(150px * cos(237.6deg));
+  --y: calc(150px * sin(237.6deg));
+}
+.confetti-piece:nth-child(35) {
+  --x: calc(150px * cos(244.8deg));
+  --y: calc(150px * sin(244.8deg));
+}
+.confetti-piece:nth-child(36) {
+  --x: calc(150px * cos(252deg));
+  --y: calc(150px * sin(252deg));
+}
+.confetti-piece:nth-child(37) {
+  --x: calc(150px * cos(259.2deg));
+  --y: calc(150px * sin(259.2deg));
+}
+.confetti-piece:nth-child(38) {
+  --x: calc(150px * cos(266.4deg));
+  --y: calc(150px * sin(266.4deg));
+}
+.confetti-piece:nth-child(39) {
+  --x: calc(150px * cos(273.6deg));
+  --y: calc(150px * sin(273.6deg));
+}
+.confetti-piece:nth-child(40) {
+  --x: calc(150px * cos(280.8deg));
+  --y: calc(150px * sin(280.8deg));
+}
+.confetti-piece:nth-child(41) {
+  --x: calc(150px * cos(288deg));
+  --y: calc(150px * sin(288deg));
+}
+.confetti-piece:nth-child(42) {
+  --x: calc(150px * cos(295.2deg));
+  --y: calc(150px * sin(295.2deg));
+}
+.confetti-piece:nth-child(43) {
+  --x: calc(150px * cos(302.4deg));
+  --y: calc(150px * sin(302.4deg));
+}
+.confetti-piece:nth-child(44) {
+  --x: calc(150px * cos(309.6deg));
+  --y: calc(150px * sin(309.6deg));
+}
+.confetti-piece:nth-child(45) {
+  --x: calc(150px * cos(316.8deg));
+  --y: calc(150px * sin(316.8deg));
+}
+.confetti-piece:nth-child(46) {
+  --x: calc(150px * cos(324deg));
+  --y: calc(150px * sin(324deg));
+}
+.confetti-piece:nth-child(47) {
+  --x: calc(150px * cos(331.2deg));
+  --y: calc(150px * sin(331.2deg));
+}
+.confetti-piece:nth-child(48) {
+  --x: calc(150px * cos(338.4deg));
+  --y: calc(150px * sin(338.4deg));
+}
+.confetti-piece:nth-child(49) {
+  --x: calc(150px * cos(345.6deg));
+  --y: calc(150px * sin(345.6deg));
+}
+.confetti-piece:nth-child(50) {
+  --x: calc(150px * cos(352.8deg));
+  --y: calc(150px * sin(352.8deg));
+}
