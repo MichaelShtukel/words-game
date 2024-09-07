@@ -1,20 +1,23 @@
 import { Dispatch, RefObject, SetStateAction, useEffect, useState } from 'react';
-import { MousePosition, SelectedLetterData } from '../../types/selectedLetterData';
 import CircleLetter from '../../types/circleLetter';
-import { generatePathData } from '../utils/generatePathData';
 import isIntersecting from '../utils/isIntersecting';
+import useDrawing from './useDrawing';
 
 export default function useMobileDrawing(
   svgRef: RefObject<SVGSVGElement>,
   circleRef: RefObject<HTMLDivElement>,
   setSelectedWord: Dispatch<SetStateAction<string>>,
 ) {
-  const [selectedLetters, setSelectedLetters] = useState<SelectedLetterData[]>([]);
-  const [circleLetters, setCircleLetters] = useState<CircleLetter[]>([]);
-  const [isDrawing, setIsDrawing] = useState<boolean>(false);
-  const [mousePosition, setMousePosition] = useState<MousePosition | undefined>(undefined);
+  const {
+    selectedLetters,
+    setSelectedLetters,
+    isDrawing,
+    setIsDrawing,
+    setMousePosition,
+    d,
+  } = useDrawing()
 
-  const d = generatePathData(selectedLetters, mousePosition)
+  const [circleLetters, setCircleLetters] = useState<CircleLetter[]>([]);
 
   useEffect(() => {
     const handleTouchMove = (event: any) => {

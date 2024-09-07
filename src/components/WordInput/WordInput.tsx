@@ -1,6 +1,6 @@
 import { Dispatch, FC, PropsWithChildren, SetStateAction, useEffect, useRef } from 'react';
 import './WordInput.scss';
-import useDrawing from '../../core/hooks/useDrawing';
+import useDesktopDrawing from '../../core/hooks/useDesktopDrawing';
 
 interface Props {
   letters: string[];
@@ -18,7 +18,7 @@ const WordInput: FC<PropsWithChildren<Props>> = ({letters, setSelectedWord, chil
     handleMouseMove,
     handleMouseUp,
     handleLetterMouseMove,
-  } = useDrawing(svgRef, setSelectedWord)
+  } = useDesktopDrawing(svgRef, setSelectedWord)
 
   useEffect(() => {
     const selectedWord = selectedLetters.map(selectedLetter => selectedLetter.letter).join('');

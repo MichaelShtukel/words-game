@@ -9,6 +9,7 @@ import getMinimalLetterSet from '../../core/utils/getMinimalLetterSet';
 import WordLine from '../WordLine/WordLine';
 import Confetti from '../Confetti/Confetti';
 import useSetProgress from '../../api/queries/useSetProgress';
+import isDeepEqual from '../../core/utils/isDeepEqual';
 
 interface Props {
   levelNumber?: number;
@@ -24,8 +25,10 @@ const Level: FC<Props> = ({levelNumber, solvedWords = []}) => {
   const {mutate: setProgress} = useSetProgress()
 
   useEffect(() => {
-    if (wordInputLetters.length === 0 && level && level.words.length !== 0) {
-      setWordInputLetters(getMinimalLetterSet(level.words))
+    const newMinimalLetterSet = level ? getMinimalLetterSet(level.words) : []
+    const isEqual = isDeepEqual(wordInputLetters, newMinimalLetterSet)
+    if (!isEqual && level && level.words.length !== 0) {
+      setWordInputLetters(newMinimalLetterSet)
     }
   }, [level, wordInputLetters])
 
