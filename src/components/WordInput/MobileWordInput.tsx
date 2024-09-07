@@ -38,10 +38,13 @@ const MobileWordInput: FC<PropsWithChildren<Props>> = ({letters, setSelectedWord
         </svg>
         {letters.map((letter, index) => {
           const rotateAngle = angle * index;
+          const className = selectedLetters.find(selectedLetter => Number(selectedLetter.id) === index)
+            ? "word-input__circle-letter word-input__circle-letter--selected"
+            : "word-input__circle-letter"
           return (
             <div
               key={index}
-              className="word-input__circle-letter"
+              className={className}
               data-id={index}
               data-letter={letter}
               style={{transform: `rotate(${rotateAngle}deg) translate(125px) rotate(-${rotateAngle}deg)`}}

@@ -48,6 +48,12 @@
       border-radius: 50%;
       border-bottom: 5px solid #A6A8AB;
       box-sizing: border-box;
+
+      &--selected {
+        background-color: #E96FA4;
+        color: white;
+        border-bottom: 5px solid #AF638C;
+      }
     }
   }
 }
