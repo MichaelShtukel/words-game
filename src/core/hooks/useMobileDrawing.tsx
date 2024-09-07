@@ -32,10 +32,12 @@ export default function useMobileDrawing(
     };
   }, [circleRef]);
 
-  useEffect(() => {
-    if (svgRef.current && circleRef.current && !circleLetters.length) {
+  const onTouchStart = (event: any) => {
+    setIsDrawing(true)
+    let newCircleLetters: CircleLetter[] = []
+    if (svgRef.current && circleRef.current) {
       const {left: svgLeft, top: svgTop} = svgRef.current.getBoundingClientRect();
-      const newCircleLetters = Array.prototype.slice.call(circleRef.current.children)
+      newCircleLetters = Array.prototype.slice.call(circleRef.current.children)
         .filter(i => i.className === 'word-input__circle-letter')
         .map(item => {
           const i = item.getBoundingClientRect()
@@ -58,11 +60,7 @@ export default function useMobileDrawing(
         });
       setCircleLetters(newCircleLetters)
     }
-  })
-
-  const onTouchStart = (event: any) => {
-    setIsDrawing(true)
-    const res = circleLetters?.find(i => isIntersecting(i, event.targetTouches[0]))
+    const res = newCircleLetters?.find(i => isIntersecting(i, event.targetTouches[0]))
     if (res) {
       const {id, letter, centerX, centerY} = res;
       setSelectedLetters([
