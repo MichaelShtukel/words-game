@@ -1,6 +1,6 @@
 export interface MousePosition {
-  x: number;
-  y: number;
+  centerX: number;
+  centerY: number;
 }
 
 export interface SelectedLetterData extends MousePosition {

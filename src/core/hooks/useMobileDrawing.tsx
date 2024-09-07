@@ -71,8 +71,8 @@ export default function useMobileDrawing(
         {
           id,
           letter,
-          x: centerX,
-          y: centerY,
+          centerX,
+          centerY,
         },
       ]);
     }
@@ -97,15 +97,15 @@ export default function useMobileDrawing(
             {
               id,
               letter,
-              x: centerX,
-              y: centerY,
+              centerX,
+              centerY,
             },
           ]);
         }
       } else {
         if (selectedLetters.length > 0) {
           const {left, top} = svgRef.current!.getBoundingClientRect();
-          setMousePosition({x: event.targetTouches[0].clientX - left, y: event.targetTouches[0].clientY - top});
+          setMousePosition({centerX: event.targetTouches[0].clientX - left, centerY: event.targetTouches[0].clientY - top});
         }
       }
     }

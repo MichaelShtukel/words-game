@@ -24,8 +24,8 @@ export default function useDesktopDrawing(
       {
         id,
         letter,
-        x,
-        y,
+        centerX: x,
+        centerY: y,
       },
     ]);
   };
@@ -33,7 +33,7 @@ export default function useDesktopDrawing(
   const handleMouseMove: MouseEventHandler<HTMLDivElement> = (event) => {
     if (isDrawing && selectedLetters.length > 0) {
       const {left, top} = svgRef.current!.getBoundingClientRect();
-      setMousePosition({x: event.clientX - left, y: event.clientY - top});
+      setMousePosition({centerX: event.clientX - left, centerY: event.clientY - top});
     }
   };
 
@@ -54,8 +54,8 @@ export default function useDesktopDrawing(
         {
           id,
           letter,
-          x,
-          y,
+          centerX: x,
+          centerY: y,
         },
       ]);
     }
