@@ -1,7 +1,7 @@
 import './App.scss';
 import Level from './components/Level/Level';
 import useGetProgress from './api/queries/useGetProgress';
-import useTabsCounter from './api/queries/useTabsCounter';
+import useTabsCounter from './core/hooks/useTabsCounter';
 import VictoryScreen from './components/VictoryScreen/VictoryScreen';
 
 function App() {

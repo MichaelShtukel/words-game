@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import './VictoryScreen.scss';
-import getLevelTitleByNumber from '../../core/getLevelTitleByNumber';
+import getLevelTitleByNumber from '../../core/utils/getLevelTitleByNumber';
 import LetterCard from '../LetterCard/LetterCard';
 import useSetProgress from '../../api/queries/useSetProgress';
 

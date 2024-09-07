@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Progress from '../../types/progress';
 import { setProgress } from '../progress';
 import Level from '../../types/level';
-import arraysEqual from '../../core/arraysEqual';
+import arraysEqual from '../../core/utils/arraysEqual';
 
 export default function useSetProgress() {
   const queryClient = useQueryClient();

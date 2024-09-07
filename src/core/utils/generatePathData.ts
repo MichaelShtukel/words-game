@@ -1,4 +1,4 @@
-import { MousePosition, SelectedLetterData } from '../types/selectedLetterData';
+import { MousePosition, SelectedLetterData } from '../../types/selectedLetterData';
 
 export function generatePathData(selectedLetters: SelectedLetterData[], mousePosition?: MousePosition) {
   if (!selectedLetters.length) {

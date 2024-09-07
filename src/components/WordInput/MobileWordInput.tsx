@@ -1,24 +1,24 @@
 import { Dispatch, FC, PropsWithChildren, SetStateAction, useEffect, useRef } from 'react';
 import './WordInput.scss';
-import useDrawing from '../../core/hooks/useDrawing';
+import useMobileDrawing from '../../core/hooks/useMobileDrawing';
 
 interface Props {
   letters: string[];
   setSelectedWord: Dispatch<SetStateAction<string>>
 }
 
-const WordInput: FC<PropsWithChildren<Props>> = ({letters, setSelectedWord, children}) => {
+const MobileWordInput: FC<PropsWithChildren<Props>> = ({letters, setSelectedWord, children}) => {
   const angle = 360 / letters.length;
   const svgRef = useRef<SVGSVGElement>(null);
+  const circleRef = useRef<HTMLDivElement>(null);
 
   const {
     selectedLetters,
     d,
-    handleMouseDown,
-    handleMouseMove,
-    handleMouseUp,
-    handleLetterMouseMove,
-  } = useDrawing(svgRef, setSelectedWord)
+    onTouchStart,
+    onTouchMove,
+    onTouchEnd,
+  } = useMobileDrawing(svgRef, circleRef, setSelectedWord)
 
   useEffect(() => {
     const selectedWord = selectedLetters.map(selectedLetter => selectedLetter.letter).join('');
@@ -26,9 +26,14 @@ const WordInput: FC<PropsWithChildren<Props>> = ({letters, setSelectedWord, chil
   }, [selectedLetters, setSelectedWord])
 
   return (
-    <div className="word-input" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
+    <div
+      className="word-input"
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
       {children}
-      <div className="word-input__circle">
+      <div className="word-input__circle" ref={circleRef}>
         <svg className="word-input__svg" ref={svgRef}>
           <path d={d} stroke="#638EC4" strokeWidth="10" fill="none" />
         </svg>
@@ -38,11 +43,9 @@ const WordInput: FC<PropsWithChildren<Props>> = ({letters, setSelectedWord, chil
             <div
               key={index}
               className="word-input__circle-letter"
+              data-id={index}
+              data-letter={letter}
               style={{transform: `rotate(${rotateAngle}deg) translate(125px) rotate(-${rotateAngle}deg)`}}
-              onMouseDown={event => {
-                handleMouseDown(index.toString(), letter, event)
-              }}
-              onMouseMove={event => handleLetterMouseMove(index.toString(), letter, event)}
             >
               {letter}
             </div>
@@ -53,4 +56,4 @@ const WordInput: FC<PropsWithChildren<Props>> = ({letters, setSelectedWord, chil
   );
 }
 
-export default WordInput;
+export default MobileWordInput;

@@ -2,10 +2,10 @@ import React, { FC, useEffect, useState } from 'react';
 import './Level.scss';
 import useGetLevel from '../../api/queries/useGetLevel';
 import Header from '../Header/Header';
-import getLevelTitleByNumber from '../../core/getLevelTitleByNumber';
+import getLevelTitleByNumber from '../../core/utils/getLevelTitleByNumber';
 import WordList from '../WordList/WordList';
-import WordInput from '../WordInput/WordInput';
-import getMinimalLetterSet from '../../core/getMinimalLetterSet';
+import WordInputHOC from '../WordInput/WordInputHOC';
+import getMinimalLetterSet from '../../core/utils/getMinimalLetterSet';
 import WordLine from '../WordLine/WordLine';
 import Confetti from '../Confetti/Confetti';
 import useSetProgress from '../../api/queries/useSetProgress';
@@ -64,11 +64,11 @@ const Level: FC<Props> = ({levelNumber, solvedWords = []}) => {
         isAnimationMode ? (
           <Confetti />
         ) : (
-          <WordInput letters={wordInputLetters} setSelectedWord={setSelectedWord}>
+          <WordInputHOC letters={wordInputLetters} setSelectedWord={setSelectedWord}>
             <div className="word-input__preword">
               <WordLine size="sm" word={selectedWord} isShow />
             </div>
-          </WordInput>
+          </WordInputHOC>
         )
       }
     </div>
