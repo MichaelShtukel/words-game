@@ -32,10 +32,10 @@ const MobileWordInput: FC<PropsWithChildren<Props>> = ({letters, setSelectedWord
       onTouchEnd={onTouchEnd}
     >
       {children}
+      <svg className="word-input__svg" ref={svgRef}>
+        <path d={d} stroke="#638EC4" strokeWidth="10" fill="none" />
+      </svg>
       <div className="word-input__circle" ref={circleRef}>
-        <svg className="word-input__svg" ref={svgRef}>
-          <path d={d} stroke="#638EC4" strokeWidth="10" fill="none" />
-        </svg>
         {letters.map((letter, index) => {
           const rotateAngle = angle * index;
           const className = selectedLetters.find(selectedLetter => Number(selectedLetter.id) === index)

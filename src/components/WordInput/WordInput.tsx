@@ -28,10 +28,10 @@ const WordInput: FC<PropsWithChildren<Props>> = ({letters, setSelectedWord, chil
   return (
     <div className="word-input" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
       {children}
+      <svg className="word-input__svg" ref={svgRef}>
+        <path d={d} stroke="#638EC4" strokeWidth="10" fill="none" />
+      </svg>
       <div className="word-input__circle">
-        <svg className="word-input__svg" ref={svgRef}>
-          <path d={d} stroke="#638EC4" strokeWidth="10" fill="none" />
-        </svg>
         {letters.map((letter, index) => {
           const rotateAngle = angle * index;
           const className = selectedLetters.find(selectedLetter => Number(selectedLetter.id) === index)
