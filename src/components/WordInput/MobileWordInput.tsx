@@ -28,7 +28,6 @@ const MobileWordInput: FC<PropsWithChildren<Props>> = ({letters, setSelectedWord
   return (
     <div
       className="word-input"
-      onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
@@ -46,6 +45,7 @@ const MobileWordInput: FC<PropsWithChildren<Props>> = ({letters, setSelectedWord
               data-id={index}
               data-letter={letter}
               style={{transform: `rotate(${rotateAngle}deg) translate(125px) rotate(-${rotateAngle}deg)`}}
+              onTouchStart={onTouchStart}
             >
               {letter}
             </div>

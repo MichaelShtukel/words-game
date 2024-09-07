@@ -1,5 +1,6 @@
 import { Dispatch, RefObject, SetStateAction, useEffect, useState } from 'react';
 import { MousePosition, SelectedLetterData } from '../../types/selectedLetterData';
+import CircleLetter from '../../types/circleLetter';
 import { generatePathData } from '../utils/generatePathData';
 import isIntersecting from '../utils/isIntersecting';
 
@@ -9,20 +10,7 @@ export default function useMobileDrawing(
   setSelectedWord: Dispatch<SetStateAction<string>>,
 ) {
   const [selectedLetters, setSelectedLetters] = useState<SelectedLetterData[]>([]);
-  const [circleLetters, setCircleLetters] = useState<{
-    bottom: number;
-    height: number;
-    left: number;
-    right: number;
-    top: number;
-    width: number;
-    x: number;
-    y: number;
-    centerX: number;
-    centerY: number;
-    id: string;
-    letter: string;
-  }[]>([]);
+  const [circleLetters, setCircleLetters] = useState<CircleLetter[]>([]);
   const [isDrawing, setIsDrawing] = useState<boolean>(false);
   const [mousePosition, setMousePosition] = useState<MousePosition | undefined>(undefined);
 
